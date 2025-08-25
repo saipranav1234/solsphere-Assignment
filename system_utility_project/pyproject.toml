@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "system-utility"
+version = "0.1.0"
+description = "Cross-platform system utility daemon"
+authors = [{ name="Your Name", email="you@example.com" }]
+dependencies = [
+    "psutil",
+    "requests"
+]
+
+[tool.setuptools.packages.find]
+where = ["system_utility"]
+
