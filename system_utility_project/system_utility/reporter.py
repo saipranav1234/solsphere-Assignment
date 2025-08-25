@@ -1,8 +1,8 @@
 import requests
-from system_utility.main import get_system_report  # Your function that returns real system data
+from system_utility.main import get_system_report  
 import datetime
 
-API_ENDPOINT = "http://127.0.0.1:8001/report"  # Call localhost
+API_ENDPOINT = "http://127.0.0.1:8001/report"  
 API_KEY = "MY_TEST_API_KEY"
 
 def report_results(results):
@@ -15,7 +15,7 @@ def report_results(results):
 
 
 def run_daemon():
-    system_data = get_system_report()  # Real system info
+    system_data = get_system_report()  
     system_data["checked_at"] = str(datetime.datetime.utcnow())
     report_results(system_data)
 

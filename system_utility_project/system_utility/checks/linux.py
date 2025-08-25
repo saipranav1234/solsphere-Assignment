@@ -13,11 +13,11 @@ from ..utils import run_cmd
 def machine_id() -> str:
     """Get system machine ID."""
     try:
-        # Try systemd machine-id first
+      
         if os.path.exists("/etc/machine-id"):
             with open("/etc/machine-id", "r") as f:
                 return f.read().strip()
-        # Fallback to hostname if machine-id not available
+      
         hostname, _, _ = run_cmd(["hostname"])
         return hostname.strip() or "LINUX-UNKNOWN"
     except Exception as e:
@@ -26,17 +26,16 @@ def machine_id() -> str:
 def disk_encryption() -> Dict[str, Any]:
     """Check disk encryption status."""
     try:
-        # Check for LUKS encryption
+       
         out, err, _ = run_cmd(["lsblk", "-o", "FSTYPE,LABEL,MOUNTPOINT", "-l", "-n"])
         
-        # Check for LUKS encryption
+      
         luks_encrypted = any(
             "crypto_LUKS" in line or 
             any(marker in line.lower() for marker in ["crypt", "luks", "encrypted"])
             for line in out.splitlines()
         )
-        
-        # Check if root is on an encrypted partition
+     
         root_encrypted = False
         try:
             root_dev = subprocess.check_output(
@@ -61,7 +60,7 @@ def disk_encryption() -> Dict[str, Any]:
 def os_update_status() -> Dict[str, Any]:
     """Check for available OS updates."""
     pkg_managers = [
-        # Format: (command, check_cmd, parse_func)
+   
         ("apt", "apt list --upgradable 2>/dev/null | wc -l", 
          lambda x: int(x.strip()) == 1),  # Header line means no updates
         ("dnf", "dnf check-update --quiet 2>/dev/null; echo $?", 

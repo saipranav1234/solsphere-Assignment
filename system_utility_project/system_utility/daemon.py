@@ -2,7 +2,7 @@ import time
 from system_utility.main import run_checks
 from system_utility.reporter import report_results
 
-def daemon_loop(interval=100):  # default: 30 min
+def daemon_loop(interval=1800):  
     last_results = None
     while True:
         results = run_checks()

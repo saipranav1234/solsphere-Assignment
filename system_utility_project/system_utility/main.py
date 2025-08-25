@@ -1,4 +1,4 @@
-# main.py
+
 import platform
 from system_utility.checks import macos, linux, windows
 
@@ -13,7 +13,7 @@ def run_checks():
     else:
         raise NotImplementedError(f"Unsupported system: {system}")
 
-# Add this function for daemon import
+
 def get_system_report():
     """
     Returns system info dictionary for daemon reporting

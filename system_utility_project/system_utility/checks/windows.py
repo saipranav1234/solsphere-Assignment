@@ -61,7 +61,7 @@ def inactivity_sleep():
         elif 'Sleep after' in line and 'DC Setting' in line:
             sleep_dc = int(line.split()[-2]) if line.split()[-2].isdigit() else None
     
-    # Check if settings are compliant (≤ 10 minutes = 600 seconds)
+   
     ac_ok = sleep_ac is not None and sleep_ac <= 600
     dc_ok = sleep_dc is not None and sleep_dc <= 600
     
